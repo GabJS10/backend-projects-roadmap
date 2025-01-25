@@ -1,4 +1,4 @@
-"# Backend Roadmap Projects
+# Backend Roadmap Projects
 
 This repository contains a collection of backend projects inspired by the [Backend Developer Roadmap](https://roadmap.sh/backend/projects). Each project tackles key backend concepts with practical examples and implementations in various technologies.
 
@@ -40,4 +40,4 @@ If you would like to contribute with improvements or new projects, feel free to 
 - [Express Documentation](https://expressjs.com/)
 - [OWASP Security Guide](https://owasp.org/www-project-top-ten/)
 
-Happy coding and learning with these projects!"
+Happy coding and learning with these projects!
