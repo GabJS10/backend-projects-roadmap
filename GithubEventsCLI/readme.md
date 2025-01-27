@@ -1,4 +1,4 @@
-"# GitHub Events CLI
+# GitHub Events CLI
 
 GitHub Events CLI is a command-line tool that fetches and displays recent GitHub events for a given username. It uses the GitHub API to retrieve data and categorizes events such as push actions, forks, issue comments, and more.
 
@@ -77,4 +77,4 @@ This project is licensed under the ISC License. See the LICENSE file for details
 
 Inspired by the [Backend Developer Roadmap](https://roadmap.sh/backend/projects) and developed as part of backend learning projects.
 
-Enjoy exploring GitHub events!"
+Enjoy exploring GitHub events!
