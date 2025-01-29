@@ -1,5 +1,3 @@
-
-
 export type Budget = {
     month: string
     amount: number
