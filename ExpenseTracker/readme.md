@@ -94,7 +94,7 @@ The data is stored in a JSON file named \`Expenses.json\`, which contains:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License
 
 ---
 
