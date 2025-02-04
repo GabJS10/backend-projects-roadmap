@@ -1,0 +1,95 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import { db, Articles, eq } from "astro:db";
+interface Props {
+  id: number;
+}
+
+const { id } = Astro.props;
+
+const article = await db.select().from(Articles).where(eq(Articles.id, id));
+console.log(article[0]?.content);
+---
+
+<Layout>
+  <form class="flex flex-col gap-5">
+    <input type="hidden" id="id" name="id" value={id} />
+    <input
+      type="text"
+      placeholder="Title"
+      id="title"
+      name="title"
+      value={article[0]?.title}
+      required
+      class="p-3 bg-transparent border-2 border-yellow-400 text-white font-mono placeholder-yellow-400 focus:outline-none focus:border-yellow-500"
+    />
+    <input
+      type="text"
+      placeholder="Publishing Date is autofilled"
+      id="publishing_date"
+      name="publishing_date"
+      disabled
+      value={article[0]?.publishing_date}
+      class="p-3 bg-transparent border-2 border-yellow-400 text-white font-mono placeholder-yellow-400 focus:outline-none focus:border-yellow-500"
+    />
+    <textarea
+      name="content"
+      id="content"
+      placeholder="You can write markdown here"
+      required
+      class="p-3 bg-transparent border-2 border-yellow-400 text-white font-mono placeholder-yellow-400 focus:outline-none focus:border-yellow-500 resize-none"
+      rows="10">{article[0]?.content}</textarea
+    >
+
+    <button
+      type="submit"
+      class="p-3
+        cursor-pointer
+        bg-yellow-400 text-black font-mono font-bold border-2 border-yellow-400 hover:bg-transparent hover:text-yellow-400 transition duration-300"
+    >
+      Submit
+    </button>
+  </form>
+
+  <script>
+    const form = document.querySelector("form");
+
+    const base_url = "http://localhost:4321/api";
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id = document.querySelector<HTMLInputElement>("#id");
+
+        const title = document.querySelector<HTMLInputElement>("#title");
+
+        const publishing_date =
+          document.querySelector<HTMLInputElement>("#publishing_date");
+        const content = document.querySelector<HTMLInputElement>("#content");
+
+        const response = await fetch(
+          `${id?.value && parseInt(id.value) !== 0 ? `${base_url}/${id.value}/articles.json` : `${base_url}/articles.json`}`,
+          {
+            method: id?.value && parseInt(id.value) !== 0 ? "PATCH" : "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: title?.value,
+              publishing_date: publishing_date?.value,
+              content: content?.value,
+            }),
+          }
+        );
+
+        if (response.status === 200) {
+          window.location.href = "/";
+        }
+
+        console.log(response);
+      });
+    }
+  </script>
+</Layout>

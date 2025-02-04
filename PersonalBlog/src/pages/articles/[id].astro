@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
+import { db, Articles, eq } from "astro:db";
+import { marked } from "marked";
+const { id } = Astro.params;
+
+const json = await db
+  .select()
+  .from(Articles)
+  .where(eq(Articles.id, parseInt(id?.toString() || "")));
+
+const article = json[0];
+article.content = await marked.parse(article.content);
+---
+
+<Layout>
+  <div class="w-[60vw] p-24">
+    <h1 class="text-4xl font-bold mb-5" transition:name={article.title}>
+      {article.title}
+    </h1>
+    <h4 class="text-lg italic mb-5 text-gray-500">{article.publishing_date}</h4>
+    <div set:html={article.content} class="prose prose-invert prose-lime" />
+  </div>
+</Layout>
