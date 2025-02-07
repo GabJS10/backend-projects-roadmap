@@ -2,11 +2,10 @@
 
 ## Overview
 
-The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It provides functionalities for creating, retrieving, updating, and deleting blog posts. The API also supports searching for blog posts by title, content, or category, and includes user authentication.
+The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It provides functionalities for creating, retrieving, updating, and deleting blog posts. The API also supports searching for blog posts by title, content, or category.
 
 ## Features
 
-- User authentication with JWT.
 - Create blog posts with a title, content, category, and tags.
 - Retrieve all blog posts or search for posts by a term.
 - Retrieve, update, and delete specific blog posts by title.
@@ -19,7 +18,6 @@ The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It
 
 - **Backend Framework**: NestJS
 - **Database**: MongoDB with Mongoose
-- **Authentication**: JWT
 - **Validation**: class-validator
 - **Configuration Management**: @nestjs/config & Joi
 
@@ -46,7 +44,6 @@ The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It
    ```env
    PORT=3000
    MONGO_URI=mongodb://localhost:27017/blogging-db
-   JWT_SECRET=your_secret_key
    ```
 4. Run the application:
    ```sh
@@ -60,13 +57,6 @@ The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It
 ```
 http://localhost:3000/api/blog-api
 ```
-
-### Authentication Routes
-
-| Method | Endpoint       | Description                |
-| ------ | -------------- | -------------------------- |
-| POST   | `/auth/login`  | Log in and get a JWT token |
-| POST   | `/auth/signup` | Register a new user        |
 
 ### Blog Routes
 
