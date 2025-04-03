@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id       String     @id @default(uuid())
+  name     String
+  UserRole UserRole[]
+}
+
+model UserRole {
+  id      String @id @default(uuid())
+  role_id String
+  role    Role   @relation(fields: [role_id], references: [id])
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  @@unique([role_id, user_id])
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  password     String
+  refreshToken String?    @unique
+  cart         Cart?
+  orders       Order[]
+  UserRole     UserRole[]
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  name        String
+  description String
+  price       Decimal
+  stock       Int         @default(0)
+  imageFront    String?
+  imageBack     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  CartItem    CartItem[]
+  OrderItem   OrderItem[]
+}
+
+model Cart {
+  id     String     @id @default(uuid())
+  userId String     @unique
+  user   User       @relation(fields: [userId], references: [id])
+  items  CartItem[]
+
+
+}
+
+model CartItem {
+  id        String  @id @default(uuid())
+  cartId    String
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+
+
+  @@unique([cartId, productId])
+}
+
+model Order {
+  id        String        @id @default(uuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id])
+  items     OrderItem[]
+  total     Decimal
+  createdAt DateTime      @default(now())
+  Payment   Payment?
+
+  //order details
+  email     String 
+  country   String
+  name      String
+  lastName  String
+  dni       String
+  direction String
+  direction_details String?
+  city      String
+  state     String
+  zip       String 
+  phone     String
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal
+}
+
+
+
+enum PaymentStatus {
+  canceled
+  processing
+  succeeded
+  requires_capture
+  requires_confirmation
+  requires_payment_method
+  requires_action
+}
+
+model Payment {
+  id        String        @id @default(uuid())
+  orderId   String        @unique
+  order     Order         @relation(fields: [orderId], references: [id])
+  amount    Decimal
+  status    PaymentStatus @default(processing)
+  createdAt DateTime      @default(now())
+  paymentIntentId String?  @unique    
+}
