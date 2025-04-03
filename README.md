@@ -21,6 +21,38 @@ Below is a list of the projects included in this repository:
 5. **UnitConverterApp** (Web App)
    A simple unit conversion web application built with Astro and TypeScript. This project is part of the Backend Projects Roadmap.
 
+6. **PersonalBlog**
+   Personal Blog is a simple yet powerful blogging platform built using Astro. It allows users to read articles, while administrators can create, edit, and delete posts       through a secure admin panel.
+
+7. **WeatherApi**
+   This project is a Weather API Wrapper Service built using NestJS. It provides a simple and efficient way to fetch weather data for a given city, with built-in caching      mechanisms to improve performance and reduce API calls to the external weather service.
+   
+8. **BlogApi**
+    The Blogging Platform API is a RESTful service built with NestJS and MongoDB. It provides functionalities for creating, retrieving, updating, and deleting blog posts.
+    The API also supports searching for blog posts by title, content, or category.
+   
+9. **TodoListApi**
+    This project is a Todo List API built using NestJS, Prisma, and JWT Authentication. It provides endpoints for managing user authentication (login, register, logout)        and todo items (create, read, update, delete). The API is designed to be scalable, secure, and easy to use.
+
+10. **ExpenseTrackerAPi**
+    The Expense Tracker API is a NestJS-based application designed to help users manage their expenses efficiently. It provides functionalities for creating, updating,         deleting, and filtering expenses, as well as user authentication and authorization.
+
+11. **CachingProxy**
+    A CLI-based caching proxy server that forwards HTTP requests to an origin server, caches the responses, and serves cached responses for subsequent identical requests.      This project is part of the Backend Roadmap challenges.
+
+12. **NoteMarkdownApi**
+    A simple Markdown Note-taking App that allows users to upload Markdown files, check grammar, save notes, and render them as HTML.
+
+
+13. **Broadcast**
+    A simple CLI-based broadcast server that allows multiple clients to connect and exchange messages in real-time using WebSockets.
+
+14. **ShortUrlApi**
+    ShortURL Service is a URL shortening API built with NestJS and MongoDB. This service allows users to shorten URLs, retrieve original URLs using a shortcode, update         shortened URLs, and delete them when no longer needed.
+
+15. **EcommerceApi**
+  This project is an E-Commerce API built using NestJS, PostgreSQL with Prisma ORM, and the Repository Pattern for modular and maintainable architecture. The API includes    authentication, product management, cart handling, order processing, and payment integration.  
+
 
 
 ## Purpose
