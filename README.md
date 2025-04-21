@@ -53,6 +53,8 @@ Below is a list of the projects included in this repository:
 15. **EcommerceApi**
   This project is an E-Commerce API built using NestJS, PostgreSQL with Prisma ORM, and the Repository Pattern for modular and maintainable architecture. The API includes    authentication, product management, cart handling, order processing, and payment integration.  
 
+16. **Image Processing Service**
+    This project is a backend API built with NestJS designed for user authentication and handling image uploads, storage on AWS S3, and on-the-fly image transformations.
 
 
 ## Purpose
