@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String  @id @default(uuid())
+  name         String
+  email        String  @unique
+  password     String
+  refreshToken String? 
+  scores       Score[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  @@map("users")
+}
+
+
+model Game {
+  id String @id @default(uuid())
+  name String @db.VarChar(100)
+  description String? @db.VarChar(200)
+  scores Score[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  @@map("games")
+}
+
+
+model Score {
+  id String @id @default(uuid())
+  user_id String
+  user User @relation(fields: [user_id], references: [id])
+  game_id String
+  game Game @relation(fields: [game_id], references: [id])
+  score Int 
+  submitted_at DateTime @default(now())
+  updatedAt  DateTime   @updatedAt
+
+
+  @@unique([user_id, game_id])
+  @@map("scores")
+}

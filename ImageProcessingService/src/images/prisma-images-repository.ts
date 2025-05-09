@@ -8,13 +8,10 @@ import {
 import { ImagesRepository } from './images-repository';
 import { Image } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
-import { BASE_URL } from 'src/constants';
 import { TransformImageDto } from './dto/transformations-dto';
 import sharp from 'sharp';
-import { join } from 'path';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { existsSync, mkdirSync } from 'fs';
 import { S3Service } from 'src/s3/s3.service';
 
 @Injectable()
